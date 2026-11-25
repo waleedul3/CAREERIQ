@@ -1,0 +1,19 @@
+{
+  "modelName": "RandomForestClassifier",
+  "onnxFile": "public/models/employability_model.onnx",
+  "opsetVersion": 15,
+  "inputName": "float_input",
+  "inputShape": [
+    "batch",
+    15
+  ],
+  "outputNames": [
+    "label",
+    "probabilities"
+  ],
+  "testSamplesChecked": 43,
+  "labelMismatches": 0,
+  "maxProbabilityDelta": 6.935513824773976e-07,
+  "parityTolerance": 0.0001,
+  "status": "PASSED"
+}

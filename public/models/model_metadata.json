@@ -1,0 +1,363 @@
+{
+  "generatedAt": "2026-11-25T07:52:33.556178+00:00",
+  "dataset": {
+    "name": "Campus Recruitment Dataset (Placement_Data_Full_Class.csv)",
+    "source": "Kaggle / Ben Roshan D",
+    "sourceUrl": "https://www.kaggle.com/datasets/benroshan/factors-affecting-campus-placement",
+    "license": "CC0 1.0 Public Domain",
+    "rawRows": 215,
+    "cleanedRows": 215,
+    "duplicatesRemoved": 0,
+    "trainRows": 172,
+    "testRows": 43,
+    "classDistribution": {
+      "Placed": 148,
+      "NotPlaced": 67
+    }
+  },
+  "selectedModel": "RandomForestClassifier",
+  "selectionRationale": "RandomForestClassifier achieved the highest holdout ROC-AUC (0.9462) on the stratified test split while capturing non-linear interactions across academic scores, employability test performance, and work experience.",
+  "models": {
+    "LogisticRegression": {
+      "cv5Fold": {
+        "accuracyMean": 0.8597,
+        "accuracyStd": 0.0637,
+        "f1Mean": 0.8903,
+        "rocAucMean": 0.9419
+      },
+      "holdoutTest": {
+        "accuracy": 0.8837,
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1": 0.9091,
+        "rocAuc": 0.941,
+        "confusionMatrix": {
+          "tn": 13,
+          "fp": 0,
+          "fn": 5,
+          "tp": 25
+        }
+      },
+      "featureImportances": [
+        {
+          "feature": "ssc_p",
+          "importance": 0.2067
+        },
+        {
+          "feature": "mba_p",
+          "importance": 0.1199
+        },
+        {
+          "feature": "degree_p",
+          "importance": 0.1018
+        },
+        {
+          "feature": "workex=No",
+          "importance": 0.0964
+        },
+        {
+          "feature": "workex=Yes",
+          "importance": 0.0963
+        },
+        {
+          "feature": "hsc_p",
+          "importance": 0.0927
+        },
+        {
+          "feature": "degree_t=Comm&Mgmt",
+          "importance": 0.0755
+        },
+        {
+          "feature": "degree_t=Sci&Tech",
+          "importance": 0.0579
+        },
+        {
+          "feature": "hsc_s=Arts",
+          "importance": 0.0439
+        },
+        {
+          "feature": "hsc_s=Commerce",
+          "importance": 0.0282
+        },
+        {
+          "feature": "specialisation=Mkt&HR",
+          "importance": 0.0186
+        },
+        {
+          "feature": "specialisation=Mkt&Fin",
+          "importance": 0.0185
+        },
+        {
+          "feature": "degree_t=Others",
+          "importance": 0.0176
+        },
+        {
+          "feature": "hsc_s=Science",
+          "importance": 0.0158
+        },
+        {
+          "feature": "etest_p",
+          "importance": 0.0101
+        }
+      ]
+    },
+    "RandomForestClassifier": {
+      "cv5Fold": {
+        "accuracyMean": 0.8313,
+        "accuracyStd": 0.0973,
+        "f1Mean": 0.8702,
+        "rocAucMean": 0.9126
+      },
+      "holdoutTest": {
+        "accuracy": 0.8605,
+        "precision": 0.9286,
+        "recall": 0.8667,
+        "f1": 0.8966,
+        "rocAuc": 0.9462,
+        "confusionMatrix": {
+          "tn": 11,
+          "fp": 2,
+          "fn": 4,
+          "tp": 26
+        }
+      },
+      "featureImportances": [
+        {
+          "feature": "ssc_p",
+          "importance": 0.2915
+        },
+        {
+          "feature": "degree_p",
+          "importance": 0.2354
+        },
+        {
+          "feature": "hsc_p",
+          "importance": 0.1572
+        },
+        {
+          "feature": "mba_p",
+          "importance": 0.0989
+        },
+        {
+          "feature": "etest_p",
+          "importance": 0.062
+        },
+        {
+          "feature": "workex=Yes",
+          "importance": 0.0324
+        },
+        {
+          "feature": "specialisation=Mkt&HR",
+          "importance": 0.0307
+        },
+        {
+          "feature": "specialisation=Mkt&Fin",
+          "importance": 0.0299
+        },
+        {
+          "feature": "workex=No",
+          "importance": 0.0284
+        },
+        {
+          "feature": "degree_t=Sci&Tech",
+          "importance": 0.0082
+        },
+        {
+          "feature": "hsc_s=Commerce",
+          "importance": 0.0081
+        },
+        {
+          "feature": "degree_t=Comm&Mgmt",
+          "importance": 0.0079
+        },
+        {
+          "feature": "hsc_s=Science",
+          "importance": 0.0052
+        },
+        {
+          "feature": "degree_t=Others",
+          "importance": 0.0022
+        },
+        {
+          "feature": "hsc_s=Arts",
+          "importance": 0.0019
+        }
+      ]
+    },
+    "GradientBoostingClassifier": {
+      "cv5Fold": {
+        "accuracyMean": 0.8195,
+        "accuracyStd": 0.0778,
+        "f1Mean": 0.869,
+        "rocAucMean": 0.8827
+      },
+      "holdoutTest": {
+        "accuracy": 0.814,
+        "precision": 0.8438,
+        "recall": 0.9,
+        "f1": 0.871,
+        "rocAuc": 0.8923,
+        "confusionMatrix": {
+          "tn": 8,
+          "fp": 5,
+          "fn": 3,
+          "tp": 27
+        }
+      },
+      "featureImportances": [
+        {
+          "feature": "ssc_p",
+          "importance": 0.4743
+        },
+        {
+          "feature": "degree_p",
+          "importance": 0.1839
+        },
+        {
+          "feature": "mba_p",
+          "importance": 0.1368
+        },
+        {
+          "feature": "hsc_p",
+          "importance": 0.1054
+        },
+        {
+          "feature": "workex=Yes",
+          "importance": 0.0335
+        },
+        {
+          "feature": "workex=No",
+          "importance": 0.0225
+        },
+        {
+          "feature": "degree_t=Others",
+          "importance": 0.016
+        },
+        {
+          "feature": "hsc_s=Science",
+          "importance": 0.0105
+        },
+        {
+          "feature": "etest_p",
+          "importance": 0.0077
+        },
+        {
+          "feature": "degree_t=Comm&Mgmt",
+          "importance": 0.0043
+        },
+        {
+          "feature": "specialisation=Mkt&Fin",
+          "importance": 0.0027
+        },
+        {
+          "feature": "specialisation=Mkt&HR",
+          "importance": 0.002
+        },
+        {
+          "feature": "hsc_s=Arts",
+          "importance": 0.0004
+        },
+        {
+          "feature": "hsc_s=Commerce",
+          "importance": 0.0
+        },
+        {
+          "feature": "degree_t=Sci&Tech",
+          "importance": 0.0
+        }
+      ]
+    }
+  },
+  "preprocessing": {
+    "schemaVersion": "1.0.0",
+    "numericFeatures": [
+      {
+        "name": "ssc_p",
+        "mean": 67.16959302325581,
+        "scale": 10.855730528135185
+      },
+      {
+        "name": "hsc_p",
+        "mean": 66.3961046511628,
+        "scale": 10.954723970421067
+      },
+      {
+        "name": "degree_p",
+        "mean": 66.21982558139534,
+        "scale": 7.314514200740468
+      },
+      {
+        "name": "etest_p",
+        "mean": 72.61459302325582,
+        "scale": 13.337766032636301
+      },
+      {
+        "name": "mba_p",
+        "mean": 62.27529069767441,
+        "scale": 5.971020171816458
+      }
+    ],
+    "categoricalFeatures": [
+      {
+        "name": "hsc_s",
+        "categories": [
+          "Arts",
+          "Commerce",
+          "Science"
+        ]
+      },
+      {
+        "name": "degree_t",
+        "categories": [
+          "Comm&Mgmt",
+          "Others",
+          "Sci&Tech"
+        ]
+      },
+      {
+        "name": "workex",
+        "categories": [
+          "No",
+          "Yes"
+        ]
+      },
+      {
+        "name": "specialisation",
+        "categories": [
+          "Mkt&Fin",
+          "Mkt&HR"
+        ]
+      }
+    ],
+    "transformedFeatureNames": [
+      "ssc_p",
+      "hsc_p",
+      "degree_p",
+      "etest_p",
+      "mba_p",
+      "hsc_s=Arts",
+      "hsc_s=Commerce",
+      "hsc_s=Science",
+      "degree_t=Comm&Mgmt",
+      "degree_t=Others",
+      "degree_t=Sci&Tech",
+      "workex=No",
+      "workex=Yes",
+      "specialisation=Mkt&Fin",
+      "specialisation=Mkt&HR"
+    ],
+    "inputVectorLength": 15,
+    "excludedColumns": {
+      "sl_no": "Identifier column with zero predictive semantics",
+      "salary": "Post-placement outcome variable (null when Not Placed; target leakage)",
+      "gender": "Protected demographic attribute excluded for ethical fairness",
+      "ssc_b": "Secondary education board excluded to avoid regional/institutional bias",
+      "hsc_b": "Higher secondary education board excluded to avoid regional/institutional bias"
+    }
+  },
+  "limitations": [
+    "Trained on n=215 campus recruitment records; small sample size limits generalization across diverse institutions.",
+    "Original cohort includes undergraduate plus MBA specialization tracks; engineering undergraduate inputs map academic averages and core track percentage to the trained feature schema.",
+    "Predicted probabilities represent statistical similarity to historical cohort placement outcomes, not an employment guarantee."
+  ]
+}
