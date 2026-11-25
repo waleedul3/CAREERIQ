@@ -26,9 +26,11 @@ git diff --cached
    - Serverless API rewrite: `/api/(.*)` → `/api/index.ts`
 3. Add **Environment Variables** in Vercel Project Settings:
    - `MONGODB_URI` = your MongoDB Atlas SRV string
-   - `AUTH_SECRET` = 32+ character random hex string (`openssl rand -hex 32`)
+   - `AUTH_SECRET` = at least 32 characters of cryptographically random data (`openssl rand -hex 32`)
    - `ADMIN_PASSCODE` = secure passcode for unlocking Administrator Console
    - `APP_URL` = your production Vercel URL (`https://your-app.vercel.app`)
+
+   Set `AUTH_SECRET` for every environment you use. Production rejects missing or weak secrets instead of using a per-instance fallback, which would invalidate sessions across serverless instances. After changing it, redeploy and sign in again; existing sessions were signed with the previous key.
 4. Deploy and verify:
    - `GET /api/health` returns `{ status: "ok", databaseConfigured: true }`
    - Browser loads `/models/employability_model.onnx` and `/ort/ort-wasm-simd-threaded.wasm` cleanly.

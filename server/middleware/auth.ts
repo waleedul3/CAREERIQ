@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import type { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { connectToDatabase } from '../config/db.ts';
 import { UserModel } from '../models/index.ts';
 import type { UserRole } from '../../src/types/index.ts';
 
@@ -11,7 +12,11 @@ export const SESSION_COOKIE_NAME = 'careeriq_session';
 
 function getSigningSecret(): string {
   const configured = process.env.AUTH_SECRET?.trim();
-  return configured && configured.length >= 16 ? configured : EPHEMERAL_FALLBACK_SECRET;
+  if (configured && configured.length >= 32) return configured;
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('AUTH_SECRET must be configured with at least 32 characters in production.');
+  }
+  return EPHEMERAL_FALLBACK_SECRET;
 }
 
 export interface SessionTokenPayload {
@@ -38,8 +43,9 @@ export function signSessionToken(payload: SessionTokenPayload): string {
 }
 
 export function verifySessionToken(token: string): SessionTokenPayload | null {
+  const secret = getSigningSecret();
   try {
-    const decoded = jwt.verify(token, getSigningSecret(), {
+    const decoded = jwt.verify(token, secret, {
       algorithms: ['HS256'],
     }) as SessionTokenPayload;
     if (!decoded || typeof decoded.sub !== 'string') return null;
@@ -128,13 +134,21 @@ export async function requireAuth(
     return;
   }
 
-  const payload = verifySessionToken(token);
+  let payload: SessionTokenPayload | null;
+  try {
+    payload = verifySessionToken(token);
+  } catch (err) {
+    console.error('Auth configuration error:', err instanceof Error ? err.message : err);
+    res.status(503).json({ error: 'Authentication is temporarily unavailable.' });
+    return;
+  }
   if (!payload) {
     res.status(401).json({ error: 'Session is invalid or expired. Please sign in again.' });
     return;
   }
 
   try {
+    await connectToDatabase();
     // Re-read role & existence from DB so role changes or deletions take effect immediately
     const userDoc = await UserModel.findById(payload.sub).select('name email role').lean();
     if (!userDoc) {
